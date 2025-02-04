@@ -1,0 +1,19 @@
+(code to collect the data)
+import time
+
+# Simulated user interaction data
+user_data = {
+    "user_id": "12345",
+    "interactions": [
+        {"product_id": "987", "timestamp": time.time(), "action": "view"},
+        {"product_id": "654", "timestamp": time.time(), "action": "click"},
+        {"product_id": "321", "timestamp": time.time(), "action": "add_to_cart"},
+    ]
+}
+
+# Simulate sending this data to the database
+def send_to_db(user_data):
+    # Store data in real-time to your database (e.g., MySQL, MongoDB, etc.)
+    pass
+
+send_to_db(user_data)
