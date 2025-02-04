@@ -1,0 +1,20 @@
+def get_recommendations(user_id, model, all_products):
+    recommendations = []
+    for product in all_products:
+        prediction = model.predict(user_id, product['product_id'])
+        recommendations.append((product['product_id'], prediction.est))
+    # Sort recommendations by estimated rating
+    recommendations.sort(key=lambda x: x[1], reverse=True)
+    return recommendations[:5]  # Top 5 recommended products
+
+# Example of product data (product_id, product_name, etc.)
+all_products = [
+    {"product_id": "987", "product_name": "Sneaker A"},
+    {"product_id": "654", "product_name": "Sneaker B"},
+    {"product_id": "321", "product_name": "Shirt A"},
+    # Add more product data here
+]
+
+# Get real-time recommendations for user '12345'
+recommended_products = get_recommendations('12345', model, all_products)
+print(recommended_products)
