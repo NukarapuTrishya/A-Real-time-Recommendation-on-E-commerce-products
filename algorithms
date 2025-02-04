@@ -1,0 +1,25 @@
+from surprise import Dataset, Reader, SVD
+from surprise.model_selection import train_test_split
+
+# Sample dataset (user_id, product_id, rating)
+data = [
+    ('user1', 'product1', 5),
+    ('user1', 'product2', 3),
+    ('user2', 'product1', 4),
+    ('user2', 'product3', 2),
+    # Add more data here
+]
+
+reader = Reader(rating_scale=(1, 5))
+dataset = Dataset.load_from_df(pd.DataFrame(data, columns=['user_id', 'product_id', 'rating']), reader)
+
+trainset, testset = train_test_split(dataset, test_size=0.2)
+
+# Use Singular Value Decomposition (SVD) algorithm
+model = SVD()
+model.fit(trainset)
+
+# Make predictions
+predictions = model.test(testset)
+for prediction in predictions:
+    print(prediction)
